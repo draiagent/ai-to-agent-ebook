@@ -1,6 +1,6 @@
 # AI to Agent 學習教材｜互動電子書
 
-#從學員痛點出發、用Agent解決問題
+從學員痛點出發、用Agent解決問題
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
