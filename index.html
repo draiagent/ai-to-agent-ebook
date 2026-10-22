@@ -164,12 +164,11 @@ function partBlock(p, extra = ''){
 
 /* 首頁 */
 function homeView(){
-  $nav.innerHTML = `<span class="brand">AI to Agent</span>`;
+  $nav.innerHTML = '';
   const last = store.get('last', null);
   const ending = `<li><a class="chitem" href="#/end"><span class="num">結</span><span><span class="tt">全書結語</span><span class="ss">以人為本，回歸需求</span></span><span class="arr" aria-hidden="true">›</span></a></li>`;
   return `<div class="wrap">
     <section class="hero">
-      <div class="kicker">AI TO AGENT</div>
       <h1>AI to Agent<br>學習教材</h1>
       <p class="sub">知識原理、任務設計與實作應用</p>
       ${last ? `<a class="cta" href="#/ch/${last.ch}/${last.i}">繼續閱讀 <small>第 ${pad(last.ch)} 章・第 ${last.i + 1} 頁</small></a>`
