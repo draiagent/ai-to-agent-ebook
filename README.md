@@ -1,5 +1,7 @@
 # AI to Agent 學習教材｜互動電子書
 
+#從學員痛點出發、用Agent解決問題
+
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
 
@@ -48,4 +50,4 @@ CC BY-SA 4.0，詳見 [LICENSE](LICENSE)。
 
 **v1.0.0 — 2026-10-22**
 
-**AI Coach 益力康陳董 | 2026 AI to Agent**
+**AI Coach 益力康陳董 x CGM Coach 血糖教練 | 2026 AI to Agent | 2027 AI to AGI Agent**
