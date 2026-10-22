@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI to Agent 學習教材</title>
+<meta name="description" content="AI to Agent 學習教材：知識原理、任務設計與實作應用。手機可操作的互動式電子書，支援放大字體。">
+<meta name="theme-color" content="#1565c0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fs:18px;
+  --bg:#eef6ff; --ink:#0f2a44; --ink2:#3d5a75; --line:#cfe0f2; --card:#ffffff;
+  --blue:#1565c0; --blue2:#1e88e5; --teal:#0f8f86; --teal2:#13a89e; --gold:#a87400; --gold2:#e0a100;
+  --ok:#2e7d32; --r:18px; --shadow:0 6px 22px rgba(21,101,192,.12);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:var(--fs)}
+body{margin:0;background:linear-gradient(160deg,#e6f3ff 0%,#fff 45%,#e3faf5 100%) fixed;color:var(--ink);
+  font-family:"Noto Sans TC",system-ui,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+button{font:inherit;color:inherit}
+a{color:var(--blue)}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+
+/* 頂部列 */
+header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:8px;min-height:60px}
+.home-btn{display:flex;align-items:center;gap:6px;border:0;background:none;font-weight:900;color:var(--blue);font-size:1rem;padding:8px 4px;cursor:pointer;white-space:nowrap}
+.fontbar{margin-left:auto;display:flex;align-items:center;gap:4px;background:#f1f6fc;border:1px solid var(--line);border-radius:999px;padding:3px}
+.fontbar span{font-size:14px;color:var(--ink2);padding:0 6px;white-space:nowrap}
+.fontbar button{min-width:44px;height:44px;border-radius:999px;border:0;background:transparent;font-weight:900;cursor:pointer;color:var(--ink2)}
+.fontbar button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.fontbar .f1{font-size:15px}.fontbar .f2{font-size:19px}.fontbar .f3{font-size:23px}
+
+h1{font-size:clamp(1.7rem,6vw,2.6rem);line-height:1.25;margin:.2em 0;font-weight:900;color:var(--blue)}
+h2{font-size:1.4rem;line-height:1.35;margin:.3em 0 .5em}
+h3{font-size:1.1rem;line-height:1.4;margin:0}
+.eyebrow{font-size:.75rem;letter-spacing:.2em;font-weight:700;color:var(--teal);text-transform:uppercase}
+.muted{color:var(--ink2)}
+section{padding:24px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px}
+
+/* 首頁 */
+.hero{text-align:center;padding:32px 0 8px}
+.hero .sub{font-size:1.05rem;color:var(--ink2);letter-spacing:.1em}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 28px;border-radius:999px;border:0;background:var(--blue);color:#fff;font-weight:700;font-size:1.05rem;cursor:pointer;margin-top:16px;box-shadow:var(--shadow);text-decoration:none}
+.cta.ghost{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.tips{display:flex;gap:10px;align-items:flex-start;background:#fff8e1;border:1px solid #f3dd9a;border-radius:14px;padding:12px 16px;margin-top:20px;text-align:left}
+
+.parts{display:grid;gap:16px}
+@media(min-width:860px){.parts{grid-template-columns:repeat(3,1fr)}}
+.part{border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.part-head{color:#fff;padding:16px 18px;cursor:pointer;border:0;text-align:left;width:100%}
+.part-head .k{font-size:.72rem;letter-spacing:.2em;opacity:.9}
+.part-head .t{font-size:1.35rem;font-weight:900}
+.c-blue{background:linear-gradient(135deg,#1565c0,#1e88e5)}
+.c-teal{background:linear-gradient(135deg,#0f8f86,#13a89e)}
+.c-gold{background:linear-gradient(135deg,#a87400,#e0a100)}
+.chlist{list-style:none;margin:0;padding:8px}
+.chitem{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:10px;border:0;background:none;text-align:left;border-radius:12px;cursor:pointer}
+.chitem:hover,.chitem:focus-visible{background:#f1f6fc}
+.num{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:900;font-size:16px}
+.chitem .tt{font-weight:700;line-height:1.4}
+.chitem .ss{font-size:.82rem;color:var(--ink2);line-height:1.4}
+.chitem .done{margin-left:auto;flex:none;color:var(--ok);font-weight:900;font-size:.85rem}
+
+/* 作者 */
+.author{display:grid;gap:16px}
+@media(min-width:860px){.author{grid-template-columns:2fr 1fr}}
+.author .name{font-size:2rem;font-weight:900;margin:0}
+.author .role{color:var(--blue);font-weight:700}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.tags span{font-size:.8rem;font-weight:700;color:var(--blue);background:#eef5fd;border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.stat b{display:block;font-size:1.6rem;color:var(--gold);line-height:1.2}
+.links a{display:block;font-weight:700;padding:6px 0;word-break:break-all}
+
+/* 篇章頁 */
+.part-banner{border-radius:var(--r);color:#fff;padding:22px;margin-top:16px}
+.progress{height:10px;background:rgba(255,255,255,.35);border-radius:999px;overflow:hidden;margin-top:10px}
+.progress i{display:block;height:100%;background:#fff}
+
+/* 閱讀器 */
+.reader-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:14px}
+.reader-head .crumb{font-size:.85rem;color:var(--ink2)}
+.slide{margin-top:12px;border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--shadow);border:1px solid var(--line);cursor:zoom-in;aspect-ratio:16/9;position:relative}
+.slide img{display:block;width:100%;height:100%;object-fit:contain}
+.slide .zoom-hint{position:absolute;right:8px;bottom:8px;background:rgba(15,42,68,.75);color:#fff;font-size:13px;border-radius:999px;padding:4px 10px}
+.pageinfo{display:flex;justify-content:space-between;align-items:center;margin:10px 2px;font-weight:700;color:var(--ink2)}
+.bar{height:8px;background:#dbe8f6;border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue2);transition:width .25s}
+.textbox{margin-top:14px}
+.textbox summary{cursor:pointer;font-weight:700;color:var(--blue);min-height:48px;display:flex;align-items:center;list-style:none}
+.textbox summary::-webkit-details-marker{display:none}
+.textbox .lines p{margin:.3em 0;font-size:1.05rem}
+.textbox .lines p.h{font-weight:900;font-size:1.2rem;color:var(--blue)}
+.note{margin-top:14px}
+.note textarea{width:100%;min-height:120px;font:inherit;font-size:1rem;padding:12px;border-radius:12px;border:2px solid var(--line);background:#fff;resize:vertical}
+.note textarea:focus{outline:none;border-color:var(--blue2)}
+.saved{font-size:.8rem;color:var(--ok);min-height:1.2em}
+
+.navbtns{position:sticky;bottom:0;z-index:20;background:rgba(255,255,255,.95);border-top:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin-top:20px;padding:10px 0 calc(10px + env(safe-area-inset-bottom))}
+.navbtns .wrap{display:grid;grid-template-columns:1fr auto 1fr;gap:10px}
+.nb{min-height:60px;border-radius:14px;border:0;font-weight:900;font-size:1.05rem;cursor:pointer;padding:0 12px}
+.nb.prev{background:#eef5fd;color:var(--blue)}
+.nb.next{background:var(--blue);color:#fff}
+.nb.list{background:#fff;border:2px solid var(--line);color:var(--ink2);font-size:.9rem}
+.nb:disabled{opacity:.35}
+
+/* 全螢幕放大 */
+.lightbox{position:fixed;inset:0;z-index:100;background:#0b1622;display:none;overflow:auto;touch-action:pan-x pan-y pinch-zoom}
+.lightbox.on{display:block}
+.lightbox img{display:block;width:100%;height:auto;min-height:100%;object-fit:contain}
+.lightbox .close{position:fixed;top:calc(12px + env(safe-area-inset-top));right:12px;width:56px;height:56px;border-radius:50%;border:0;background:#fff;font-size:28px;font-weight:900;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.lightbox .lb-tip{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:rgba(255,255,255,.9);border-radius:999px;padding:6px 14px;font-size:14px;color:#0f2a44}
+@media (orientation:landscape) and (max-height:500px){.lightbox img{width:auto;height:100vh;margin:0 auto}}
+
+footer{text-align:center;padding:32px 16px 48px;color:var(--ink2);font-size:.85rem}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:3px solid #ffb300;outline-offset:2px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <button class="home-btn" onclick="go('#/')" aria-label="回首頁">📘 AI to Agent</button>
+    <div class="fontbar" role="group" aria-label="字體大小">
+      <span>字體</span>
+      <button class="f1" data-fs="18" aria-label="標準字">小</button>
+      <button class="f2" data-fs="22" aria-label="大字">中</button>
+      <button class="f3" data-fs="26" aria-label="特大字">大</button>
+    </div>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<div class="lightbox" id="lb" role="dialog" aria-label="放大檢視投影片">
+  <img id="lbimg" alt="">
+  <button class="close" onclick="closeLB()" aria-label="關閉放大">✕</button>
+  <div class="lb-tip">用兩指可再放大　橫拿手機看更清楚</div>
+</div>
+
+<script src="data.js"></script>
+<script>
+const B = window.BOOK;
+const $app = document.getElementById('app');
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem('aitoagent:'+k); return v===null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem('aitoagent:'+k, JSON.stringify(v)); }catch(e){} }
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pad = n => String(n).padStart(2,'0');
+const img = n => `img/p${String(n).padStart(3,'0')}.webp`;
+const partOf = no => B.parts.find(p => no >= p.chapters[0] && no <= p.chapters[1]);
+const chaptersOf = p => B.chapters.filter(c => c.no >= p.chapters[0] && c.no <= p.chapters[1]);
+const doneSet = () => new Set(store.get('done', []));
+
+/* 字體大小 */
+function setFont(px){
+  document.documentElement.style.setProperty('--fs', px+'px');
+  document.querySelectorAll('.fontbar button').forEach(b => b.setAttribute('aria-pressed', b.dataset.fs == px));
+  store.set('fs', px);
+}
+document.querySelectorAll('.fontbar button').forEach(b => b.onclick = () => setFont(+b.dataset.fs));
+setFont(store.get('fs', 18));
+
+function go(h){ location.hash = h; }
+window.addEventListener('hashchange', render);
+
+/* 首頁 */
+function chItem(c){
+  const p = partOf(c.no), d = doneSet().has(c.no);
+  return `<li><button class="chitem" onclick="go('#/ch/${c.no}')">
+    <span class="num c-${p.color}">${pad(c.no)}</span>
+    <span><span class="tt">${esc(c.title)}</span><br><span class="ss">${esc(c.sub)}</span></span>
+    ${d ? '<span class="done">✔ 讀完</span>' : ''}</button></li>`;
+}
+function homeView(){
+  const last = store.get('last', null);
+  const resume = last ? `<a class="cta" href="#/ch/${last.ch}/${last.i}">▶ 繼續上次：第 ${pad(last.ch)} 章 第 ${last.i+1} 頁</a>` :
+    `<a class="cta" href="#/ch/1">▶ 從第 1 章開始讀</a>`;
+  return `
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">AI TO AGENT</div>
+      <h1>AI to Agent 學習教材</h1>
+      <div class="sub">知識原理、任務設計與實作應用</div>
+      ${resume}
+      <div class="tips"><span aria-hidden="true">💡</span><span>字太小嗎？按右上角「<b>大</b>」就能放大字體。投影片可以<b>點一下放大</b>，每頁下方也有<b>大字文字版</b>。</span></div>
+    </section>
+
+    <section id="toc" aria-labelledby="toc-h">
+      <div class="eyebrow">CONTENTS</div>
+      <h2 id="toc-h">全書目錄</h2>
+      <div class="parts">
+        ${B.parts.map(p => `
+        <div class="part">
+          <button class="part-head c-${p.color}" onclick="go('#/part/${p.id}')">
+            <div class="k">PART 0${p.id}・${p.tag}</div>
+            <div class="t">${p.name}｜${p.title}</div>
+            <div class="k">第 ${pad(p.chapters[0])}–${pad(p.chapters[1])} 章　進入本篇 ›</div>
+          </button>
+          <ul class="chlist">${chaptersOf(p).map(chItem).join('')}</ul>
+        </div>`).join('')}
+      </div>
+      <p style="text-align:center"><a class="cta ghost" href="#/end">全書結語</a></p>
+    </section>
+
+    <section id="author" aria-labelledby="au-h">
+      <div class="eyebrow">ABOUT THE AUTHOR</div>
+      <h2 id="au-h">作者介紹</h2>
+      <div class="author">
+        <div class="card">
+          <p class="name">陳俊宏</p>
+          <div class="role">AI Coach 益力康陳董 × CGM Coach 血糖教練</div>
+          <div class="tags">
+            <span>益力康生物科技有限公司 董事長</span><span>益生寵愛寵物餐廳 創辦人</span>
+            <span>資策會 生成式 AI 認證講師</span><span>工研院產業輔導團 AI 認證講師</span>
+            <span>中華民國工業總會 會員代表</span><span>外貿協會 VIP 會員</span>
+            <span>臺南市總工業會 理監事</span><span>高爾夫球・匹克球 國家級教練</span>
+          </div>
+          <p>畢業於國立交通大學資訊工程系，取得新加坡國立大學 MBA 與國立台南大學管理學院 EMBA，兼具資訊科技底蘊、國際商管視野，以及超過 25 年製造業經營的實戰經驗，熟稔產、銷、人、發、財管理系統。</p>
+          <p>長期參與工商團體服務，擔任中華民國工業總會會員代表、外貿協會 VIP 會員、臺南市總工業會理監事。投入大健康與生技產業，為中華民國糖尿病衛教學會衛教團隊成員；授課十年以上、累計超過一百場，於嘉義大學、嘉南藥理大學、元培大學、中信科大擔任業界講師，公益服務多次獲獎。</p>
+          <p>近年提出 Visual Agent Design（VAD）、Visual Agent Card（VAC）、RE:Agent 等方法並公開發表於 GitHub。</p>
+          <p>本書為作者第三本著作，前兩本為《血糖教練：能量穩定性、代謝靈活性、神經可塑性》與《寵物餐廳創新經營策略：以益生寵愛寵物餐廳為例》。</p>
+        </div>
+        <div style="display:grid;gap:16px;align-content:start">
+          <div class="stats">
+            <div class="stat"><b>25+ 年</b>製造業經營</div>
+            <div class="stat"><b>10+ 年</b>授課資歷</div>
+            <div class="stat"><b>100+ 場</b>授課場次</div>
+            <div class="stat"><b>多次</b>公益服務獲獎</div>
+          </div>
+          <div class="card links">
+            <div class="eyebrow">LINKS</div>
+            <div class="muted">公司｜益力康生物科技有限公司</div>
+            <a href="https://www.easycure.com.tw" target="_blank" rel="noopener">www.easycure.com.tw</a>
+            <div class="muted" style="margin-top:8px">發表｜GitHub</div>
+            <a href="https://github.com/draiagent" target="_blank" rel="noopener">github.com/draiagent</a>
+            <a href="https://github.com/draiagent/Visual-Agent-Design" target="_blank" rel="noopener">Visual-Agent-Design</a>
+            <a href="https://github.com/draiagent/ai-to-agent-re-agent" target="_blank" rel="noopener">RE:Agent</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>`;
+}
+
+/* 篇章頁 */
+function partView(id){
+  const p = B.parts.find(x => x.id == id); if(!p) return homeView();
+  const chs = chaptersOf(p), done = doneSet();
+  const n = chs.filter(c => done.has(c.no)).length;
+  const prevP = B.parts.find(x => x.id == p.id-1), nextP = B.parts.find(x => x.id == p.id+1);
+  return `<div class="wrap">
+    <div class="part-banner c-${p.color}">
+      <div class="eyebrow" style="color:#fff;opacity:.9">PART 0${p.id}・${p.tag}</div>
+      <h1 style="color:#fff">${p.name}｜${p.title}</h1>
+      <div>已讀完 ${n} / ${chs.length} 章</div>
+      <div class="progress"><i style="width:${n/chs.length*100}%"></i></div>
+    </div>
+    <section><ul class="chlist card" style="padding:8px">${chs.map(chItem).join('')}</ul></section>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between">
+      ${prevP ? `<a class="cta ghost" href="#/part/${prevP.id}">‹ ${prevP.name}</a>` : `<a class="cta ghost" href="#/">‹ 回首頁</a>`}
+      ${nextP ? `<a class="cta" href="#/part/${nextP.id}">${nextP.name} ›</a>` : `<a class="cta" href="#/end">全書結語 ›</a>`}
+    </div>
+  </div>`;
+}
+
+/* 閱讀器 */
+let R = null;
+function readerView(range, i, meta){
+  const pages = []; for(let n = range.start; n <= range.end; n++) pages.push(n);
+  i = Math.max(0, Math.min(i || 0, pages.length-1));
+  R = {pages, i, meta};
+  if(meta.ch) store.set('last', {ch: meta.ch, i});
+  return `<div class="wrap">
+    <div class="reader-head">
+      <span class="crumb">${meta.crumb}</span>
+    </div>
+    <h2 style="margin-top:4px">${meta.title}</h2>
+    <div class="slide" onclick="openLB()" role="button" aria-label="點一下放大投影片">
+      <img id="slideimg" alt="">
+      <span class="zoom-hint">🔍 點我放大</span>
+    </div>
+    <div class="pageinfo"><span id="pgtxt"></span><span id="pgpct"></span></div>
+    <div class="bar"><i id="pgbar"></i></div>
+    <details class="textbox card" id="tb" ${store.get('textOpen', true) ? 'open' : ''}>
+      <summary>📖 大字文字版（點此收合／展開）</summary>
+      <div class="lines" id="lines"></div>
+    </details>
+    <div class="note card" id="notebox" hidden>
+      <label for="note"><b>✏️ 寫下你的想法</b>（只存在這支手機，不會上傳）</label>
+      <textarea id="note" placeholder="在這裡輸入你的答案…"></textarea>
+      <div class="saved" id="saved"></div>
+    </div>
+  </div>
+  <div class="navbtns"><div class="wrap">
+    <button class="nb prev" id="bprev" onclick="turn(-1)">‹ 上一頁</button>
+    <button class="nb list" onclick="go('${meta.back}')">目錄</button>
+    <button class="nb next" id="bnext" onclick="turn(1)">下一頁 ›</button>
+  </div></div>`;
+}
+function paintPage(){
+  const {pages, i, meta} = R, n = pages[i];
+  document.getElementById('slideimg').src = img(n);
+  document.getElementById('slideimg').alt = `第 ${n} 頁投影片`;
+  document.getElementById('pgtxt').textContent = `第 ${i+1} / ${pages.length} 頁`;
+  document.getElementById('pgpct').textContent = `全書 p.${n}`;
+  document.getElementById('pgbar').style.width = ((i+1)/pages.length*100)+'%';
+  const lines = B.pages[n] || [];
+  document.getElementById('lines').innerHTML = lines.length
+    ? lines.map((l, k) => `<p class="${k < 2 && !/^[A-Z ·\-:0-9]+$/.test(l) ? 'h' : ''}">${esc(l)}</p>`).filter((_, k) => !/^[A-Z][A-Z ·\-:0-9]+$/.test(lines[k])).join('')
+    : '<p class="muted">本頁為圖片，請點上方投影片放大觀看。</p>';
+  // 提問頁加上作答框
+  const isQ = lines.some(l => /^QUESTION|寫下|你的話|想一想|^練習|EXERCISE|PRACTICE/.test(l));
+  const nb = document.getElementById('notebox'); nb.hidden = !isQ;
+  if(isQ){
+    const ta = document.getElementById('note'), key = 'note:'+n;
+    ta.value = store.get(key, ''); document.getElementById('saved').textContent = ta.value ? '✔ 已儲存' : '';
+    ta.oninput = () => { store.set(key, ta.value); document.getElementById('saved').textContent = '✔ 已自動儲存'; };
+  }
+  document.getElementById('bprev').disabled = i === 0 && !meta.prev;
+  document.getElementById('bprev').textContent = i === 0 && meta.prev ? '‹ 上一章' : '‹ 上一頁';
+  document.getElementById('bnext').textContent = i === pages.length-1 ? (meta.next ? '下一章 ›' : '完成 ✔') : '下一頁 ›';
+  // 預載下一頁
+  if(pages[i+1]){ const pre = new Image(); pre.src = img(pages[i+1]); }
+}
+function turn(d){
+  const {pages, i, meta} = R, j = i + d;
+  if(j < 0){ if(meta.prev) go(meta.prev); return; }
+  if(j >= pages.length){
+    if(meta.ch){ const s = doneSet(); s.add(meta.ch); store.set('done', [...s]); }
+    go(meta.next || '#/'); return;
+  }
+  R.i = j;
+  history.replaceState(null, '', meta.base + '/' + j);
+  if(meta.ch) store.set('last', {ch: meta.ch, i: j});
+  paintPage(); window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+/* 放大檢視 */
+function openLB(){ const lb = document.getElementById('lb'); document.getElementById('lbimg').src = img(R.pages[R.i]); lb.classList.add('on'); lb.scrollTo(0,0); document.body.style.overflow = 'hidden'; }
+function closeLB(){ document.getElementById('lb').classList.remove('on'); document.body.style.overflow = ''; }
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeLB();
+  if(R && !document.getElementById('lb').classList.contains('on') && !/TEXTAREA/.test(document.activeElement.tagName)){
+    if(e.key === 'ArrowRight') turn(1); if(e.key === 'ArrowLeft') turn(-1);
+  }
+});
+/* 左右滑動翻頁 */
+let sx = null, sy = null;
+document.addEventListener('touchstart', e => { if(e.touches.length === 1 && e.target.closest('.slide')){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; } else sx = null; }, {passive: true});
+document.addEventListener('touchend', e => {
+  if(sx === null || !R) return;
+  const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+  if(Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5){ e.preventDefault(); turn(dx < 0 ? 1 : -1); }
+});
+document.addEventListener('toggle', e => { if(e.target.id === 'tb') store.set('textOpen', e.target.open); }, true);
+
+/* 路由 */
+function render(){
+  closeLB(); R = null;
+  const h = location.hash.replace(/^#\/?/, '').split('/');
+  let html, after = null;
+  if(h[0] === 'part') html = partView(+h[1]);
+  else if(h[0] === 'ch'){
+    const c = B.chapters.find(x => x.no == h[1]);
+    if(!c) html = homeView();
+    else{
+      const p = partOf(c.no);
+      const prevC = B.chapters.find(x => x.no == c.no-1), nextC = B.chapters.find(x => x.no == c.no+1);
+      html = readerView(c, +h[2] || 0, {
+        ch: c.no, base: '#/ch/'+c.no, back: '#/part/'+p.id,
+        crumb: `${p.name}｜${p.title} › 第 ${pad(c.no)} 章`,
+        title: `${pad(c.no)}　${esc(c.title)}`,
+        prev: prevC ? '#/ch/'+prevC.no : null,
+        next: nextC ? (partOf(nextC.no) !== p ? '#/part/'+partOf(nextC.no).id : '#/ch/'+nextC.no) : '#/end'
+      });
+      after = paintPage;
+    }
+  }
+  else if(h[0] === 'end'){
+    html = readerView(B.epilogue, +h[1] || 0, {base: '#/end', back: '#/', crumb: '全書結語', title: '以人為本，回歸需求', prev: '#/ch/21', next: null});
+    after = paintPage;
+  }
+  else html = homeView();
+  $app.innerHTML = html + `<footer>AI Coach 益力康陳董 × CGM Coach 血糖教練<br>2026 AI to Agent｜2027 AI to AGI Agent</footer>`;
+  if(after) after();
+  window.scrollTo(0, 0);
+}
+render();
+</script>
+</body>
+</html>
