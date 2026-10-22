@@ -28,7 +28,8 @@ a{color:inherit;text-decoration:none}
 /* 頂部列 */
 .top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:12px;height:60px}
-.brand{font-weight:900;color:var(--blue);font-size:17px;white-space:nowrap}
+.brand{display:flex;align-items:center}
+.brand img{display:block;height:44px;width:auto}
 .back{display:flex;align-items:center;gap:4px;font-weight:700;color:var(--ink2);font-size:16px;min-height:44px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .fsbtn{margin-left:auto;flex:none;display:flex;align-items:center;gap:6px;height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:16px;color:var(--ink)}
 .fsbtn b{font-size:20px;line-height:1}
@@ -78,7 +79,7 @@ section{padding:28px 0 0}
 .reader h2{margin:2px 0 14px}
 .slide{position:relative;display:block;width:100%;padding:0;border:0;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:16/9;cursor:zoom-in}
 .slide img{display:block;width:100%;height:100%;object-fit:contain}
-.slide .zi{position:absolute;right:8px;bottom:8px;width:36px;height:36px;border-radius:50%;background:rgba(15,42,68,.6);color:#fff;display:grid;place-items:center;font-size:18px}
+.slide .zi{position:absolute;right:8px;bottom:8px;width:36px;height:44px;border-radius:50%;background:rgba(15,42,68,.6);color:#fff;display:grid;place-items:center;font-size:18px}
 .bar{height:4px;background:var(--line);border-radius:999px;margin:12px 0 0;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--c);transition:width .25s}
 .pagetext{margin-top:16px;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:18px 20px}
@@ -164,7 +165,7 @@ function partBlock(p, extra = ''){
 
 /* 首頁 */
 function homeView(){
-  $nav.innerHTML = '';
+  $nav.innerHTML = `<a class="brand" href="https://www.easycure.com.tw" target="_blank" rel="noopener"><img src="logo.svg" alt="益力康 EASY CURE"></a>`;
   const last = store.get('last', null);
   const ending = `<li><a class="chitem" href="#/end"><span class="num">結</span><span><span class="tt">全書結語</span><span class="ss">以人為本，回歸需求</span></span><span class="arr" aria-hidden="true">›</span></a></li>`;
   return `<div class="wrap">
