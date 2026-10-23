@@ -3,7 +3,7 @@
 從學員痛點出發、用Agent解決問題
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](CHANGELOG.md)
 
 > 《AI to Agent 學習教材：知識原理、任務設計與實作應用》的手機互動式電子書，針對新手與長者設計，可一鍵放大字體。
 
@@ -24,7 +24,8 @@
 ai-to-agent-ebook/
 ├─ index.html      # 電子書網頁（單一檔案）
 ├─ data.js         # 目錄與每頁文字（由 build.py 產生）
-├─ img/            # 每頁投影片圖片 p001.webp ~ p292.webp
+├─ img/            # 每頁投影片圖片 p001.webp ~ p275.webp
+├─ logo.svg       # 益力康 EASY CURE logo
 ├─ build.py        # 從 PDF 重新產生 img/ 與 data.js
 ├─ .nojekyll
 ├─ README.md
@@ -35,7 +36,7 @@ ai-to-agent-ebook/
 
 ## 更新內容
 
-把新版 `AI_to_Agent_學習教材_電子書.pdf` 放在本資料夾的上一層，執行：
+把新版 `AI_to_Agent_學習教材_全書.pdf` 放在本資料夾的上一層，執行：
 
 ```bash
 python build.py
@@ -47,6 +48,6 @@ CC BY-SA 4.0，詳見 [LICENSE](LICENSE)。
 
 ## Version
 
-**v1.1.0 — 2026-10-22**
+**v1.2.0 — 2026-10-23**
 
 **AI Coach 益力康陳董 x CGM Coach 血糖教練 | 2026 AI to Agent | 2027 AI to AGI Agent**
